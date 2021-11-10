@@ -1,13 +1,13 @@
 package core;
 
-import util.CharacterInterface;
+import util.StoryCharacterInterface;
 
-public class Character implements CharacterInterface {
+public class StoryCharacter implements StoryCharacterInterface {
     private final String name;
     private boolean isTrulyHappy;
     private Stamp stamp;
 
-    public Character(String name) {
+    public StoryCharacter(String name) {
         this.name = name;
     }
 
@@ -16,7 +16,7 @@ public class Character implements CharacterInterface {
     }
 
     public void fallOnto(VacuumCleaner vc) {
-        System.out.println(this + " падает на "+vc);
+        System.out.println(this + " падает на "+vc+".");
         vc.setPressed(true);
     }
 
