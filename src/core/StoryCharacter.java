@@ -16,8 +16,10 @@ public class StoryCharacter implements StoryCharacterInterface {
     }
 
     public void fallOnto(VacuumCleaner vc) {
-        System.out.println(this + " падает на "+vc+".");
+        System.out.println(this + " падает на пылесос "+vc+".");
         vc.setPressed(true);
+        System.out.println(this + " цепляется за ручку пылесоса "+vc+".");
+        vc.setHandleGrabbed(true);
     }
 
     @Override
