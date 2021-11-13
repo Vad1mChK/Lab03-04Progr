@@ -26,6 +26,10 @@ public class StoryCharacter implements StoryCharacterInterface {
         return held;
     }
 
+    public void setHeld(Object held) {
+        this.held = held;
+    }
+
     public void setHappy() {
         System.out.println(name + " становится счастливым.");
         this.isHappy = true;
@@ -65,7 +69,7 @@ public class StoryCharacter implements StoryCharacterInterface {
     }
 
     public void hold(Object object) {
-        held = object;
+        setHeld(object);
         System.out.println(name + " берёт в руки объект \"" + held + "\".");
         this.setHappy();
     }
