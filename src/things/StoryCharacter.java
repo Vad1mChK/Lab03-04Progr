@@ -47,10 +47,12 @@ public class StoryCharacter implements StoryCharacterInterface {
             switch (ACTION) {
                 case FALL: {
                     System.out.println(name + " падает на объект " + vc + ".");
+                    vc.setFallenOnto(true);
                     break;
                 }
                 case GRAB: {
                     System.out.println(name + " нажимает на ручку объекта " + vc + ".");
+                    vc.setHandleGrabbed(true);
                     break;
                 }
                 default: {
