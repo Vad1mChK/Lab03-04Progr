@@ -41,7 +41,7 @@ public class Floor implements ThingInterface {
 
     @Override
     public int hashCode() {
-        return Objects.hash(garbageList)+name.hashCode();
+        return Objects.hash(garbageList) + name.hashCode();
     }
 
     @Override

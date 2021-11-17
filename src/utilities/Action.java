@@ -4,9 +4,10 @@ public enum Action {
     FALL,
     GRAB,
     OPEN;
+
     @Override
     public String toString() {
-        switch(ordinal()) {
+        switch (ordinal()) {
             case 0: {
                 return "Падение";
             }

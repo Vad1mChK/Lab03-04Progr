@@ -4,6 +4,7 @@ import utilities.ThingInterface;
 
 public abstract class Garbage implements ThingInterface {
     public static final String name = "Мусор";
+
     public void hoverOverFloor() {
         System.out.println(this.getName() + " летает над объектом \"" + new Floor() + "\".");
     }

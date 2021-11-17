@@ -7,11 +7,11 @@ import java.util.LinkedList;
 
 public class VacuumCleaner implements VacuumCleanerInterface {
     private final String name;
+    private final LinkedList<Garbage> garbageList = new LinkedList<>();
     private boolean isFallenOnto;
     private boolean isHandleGrabbed;
     private boolean isOpen;
     private Floor floor;
-    private final LinkedList<Garbage> garbageList = new LinkedList<>();
 
     public VacuumCleaner(Garbage... garbage) {
         name = "Пылесос";
@@ -61,15 +61,15 @@ public class VacuumCleaner implements VacuumCleanerInterface {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         VacuumCleaner that = (VacuumCleaner) o;
-        return isOpen == that.isOpen && isFallenOnto==that.isFallenOnto && isHandleGrabbed == that.isHandleGrabbed &&
+        return isOpen == that.isOpen && isFallenOnto == that.isFallenOnto && isHandleGrabbed == that.isHandleGrabbed &&
                 name.equals(that.name) && floor.equals(that.floor) && garbageList.equals(that.garbageList);
     }
 
     @Override
     public int hashCode() {
         int result = name.hashCode();
-        result = 2*result + floor.hashCode();
-        result = 2*result + garbageList.hashCode();
+        result = 2 * result + floor.hashCode();
+        result = 2 * result + garbageList.hashCode();
         if (isFallenOnto) result += Integer.MAX_VALUE;
         if (isHandleGrabbed) result += Integer.MAX_VALUE / 2;
         if (isOpen) result += Integer.MAX_VALUE / 4;
