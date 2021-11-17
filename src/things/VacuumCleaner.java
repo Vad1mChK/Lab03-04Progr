@@ -49,11 +49,15 @@ public class VacuumCleaner implements VacuumCleanerInterface {
     @Override
     public void unleash() {
         setOpen(true);
-        System.out.println("Содержимое пылесоса высыпано на объект \"" + floor + "\".");
-        for (Garbage g : garbageList) {
-            floor.addGarbage(g);
-        }
-        garbageList.clear();
+        if (!garbageList.isEmpty()) {
+            LinkedList<String> stringList = new LinkedList<>();
+            for (Garbage g : garbageList) {
+                floor.addGarbage(g);
+                stringList.add(g.toString());
+            }
+            garbageList.clear();
+            System.out.println("Содержимое пылесоса (" + String.join(", ", stringList) + ") высыпано на объект \"" + floor + "\".");
+        } else System.out.println("Пылесос пуст. Ничего не было высыпано на объект \"" + floor + "\"");
     }
 
     @Override

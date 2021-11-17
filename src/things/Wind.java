@@ -36,6 +36,9 @@ public class Wind implements ThingInterface {
         floor.liftGarbage(this);
         blowDust(floor, ch1);
         blowStamp(floor, ch2);
+        if (!floor.getDusts().isEmpty()) {
+            ch1.sneeze(floor);
+        }
     }
 
     public void printGarbage() {
