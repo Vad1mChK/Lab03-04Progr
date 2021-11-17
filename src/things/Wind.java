@@ -4,6 +4,7 @@ import utilities.ThingInterface;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class Wind implements ThingInterface {
     public static final String name = "Ветер";
@@ -55,6 +56,19 @@ public class Wind implements ThingInterface {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Wind wind = (Wind) o;
+        return garbageList.equals(wind.garbageList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(garbageList);
     }
 
     @Override

@@ -3,6 +3,7 @@ package things;
 import utilities.ThingInterface;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class Floor implements ThingInterface {
     public static final String name = "Пол";
@@ -32,15 +33,20 @@ public class Floor implements ThingInterface {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Floor)) return false;
+        return Objects.equals(garbageList, ((Floor) o).garbageList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(garbageList)+name.hashCode();
+    }
+
+    @Override
     public String toString() {
         return getName();
     }
 
-    public void printGarbage() {
-        LinkedList<String> stringList = new LinkedList<>();
-        for (Garbage g : garbageList) {
-            stringList.add(g.toString());
-        }
-        System.out.println("// Содержимое объекта " + this + ": " + String.join(", ", stringList));
-    }
 }

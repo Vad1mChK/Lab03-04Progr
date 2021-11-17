@@ -17,4 +17,15 @@ public class Dust extends Garbage {
     public String toString() {
         return getName();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        return obj instanceof Dust;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() + Integer.MAX_VALUE;
+    }
 }

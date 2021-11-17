@@ -15,6 +15,17 @@ public class Stamp extends Garbage {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this==obj) return true;
+        return obj instanceof Stamp;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    @Override
     public String toString() {
         return getName();
     }

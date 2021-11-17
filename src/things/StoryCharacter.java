@@ -95,11 +95,10 @@ public class StoryCharacter implements StoryCharacterInterface {
 
     @Override
     public int hashCode() {
-        if (isHappy) {
-            return name.hashCode() + held.hashCode() + name.length();
-        } else {
-            return name.hashCode() + held.hashCode();
-        }
+        int result = name.hashCode();
+        result = 2 * result + held.hashCode();
+        result += isHappy ? Integer.MAX_VALUE : 0;
+        return result;
     }
 
     @Override
