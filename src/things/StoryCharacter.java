@@ -63,9 +63,18 @@ public class StoryCharacter implements StoryCharacterInterface {
     }
 
     @Override
-    public void sneeze() {
+    public void sneeze(Dust dust) {
+        Wind sneezeWind = new Wind();
         System.out.println(name + " чихает.");
-        new Dust().soar();
+        dust.soar(sneezeWind);
+    }
+
+    public void sneeze(Floor floor) {
+        Wind sneezeWind = new Wind();
+        System.out.println(name + " чихает.");
+        for (Dust dust : floor.getDusts()) {
+            dust.soar(sneezeWind);
+        }
     }
 
     public void hold(Object object) {

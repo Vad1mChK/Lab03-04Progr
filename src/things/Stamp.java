@@ -8,7 +8,7 @@ public class Stamp extends Garbage {
         return name;
     }
 
-    public void fallBefore(StoryCharacter ch) {
+    public void fallBefore(Floor floor, StoryCharacter ch, Wind wind) {
         hoverOverFloor();
         System.out.println(name + " падает к ногам персонажа \"" + ch.getName() + "\".");
         ch.hold(this);

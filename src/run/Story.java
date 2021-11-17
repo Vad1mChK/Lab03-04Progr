@@ -1,16 +1,16 @@
 package run;
 
-import things.Stamp;
-import things.StoryCharacter;
-import things.VacuumCleaner;
-import things.Wind;
+import things.*;
 import utilities.Action;
 
 public class Story {
     public static void main(String[] args) {
         StoryCharacter Karlsson = new StoryCharacter("Карлсон");
         StoryCharacter Lillebror = new StoryCharacter("Малыш");
-        VacuumCleaner vacuumCleaner = new VacuumCleaner();
+        VacuumCleaner vacuumCleaner = new VacuumCleaner(new Dust(), new Stamp());
+        Floor floor = new Floor();
+        Wind wind = new Wind();
+        vacuumCleaner.placeOn(floor);
         // Карлсон навалился животом на пылесос и вцепился в его ручку.
         Karlsson.interactWith(vacuumCleaner, Action.FALL, Action.GRAB);
         // Малыш удивился, что Карлсон, как маленький играет в такие детские игры, но смотреть на это было все же забавно.
@@ -20,18 +20,17 @@ public class Story {
         // Получилась большая куча серо-черной пыли.
         // Больше он уже не смог ничего добавить,
         // потому что в открытое окно ворвался ветер,
+        wind.blow(floor, Karlsson, Lillebror);
         // взметнул пыль,
         // она забилась Карлсону в нос,
         // и он чихнул.
         // От его чиханья пыль снова взметнулась,
-        Wind.blow(Karlsson);
         // над полом покружил маленький разноцветный квадратик
         // и упал к ногам Малыша.
-        new Stamp().fallBefore(Lillebror);
         // Малыш обдул пыль со своей драгоценной марки --
         // он был совершенно счастлив.
         // Вдруг Карлсон еще раз чихнул,
         // и с пола снова поднялось целое облако пыли.
-        Karlsson.sneeze();
+        Karlsson.sneeze(floor);
     }
 }

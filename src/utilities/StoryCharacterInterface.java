@@ -1,5 +1,6 @@
 package utilities;
 
+import things.Dust;
 import things.StoryCharacter;
 import things.VacuumCleaner;
 
@@ -8,7 +9,7 @@ public interface StoryCharacterInterface extends ThingInterface {
 
     void interactWith(VacuumCleaner vc, Action... ACTIONS);
 
-    void sneeze();
+    void sneeze(Dust dust);
 
     void hold(Object obj);
 }
