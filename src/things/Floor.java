@@ -1,11 +1,12 @@
 package things;
 
+import utilities.GarbageAdditionInterface;
 import utilities.ThingInterface;
 
 import java.util.LinkedList;
 import java.util.Objects;
 
-public class Floor implements ThingInterface {
+public class Floor implements ThingInterface, GarbageAdditionInterface {
     public static final String name = "Пол";
     private final LinkedList<Garbage> garbageList = new LinkedList<>();
 
@@ -13,8 +14,9 @@ public class Floor implements ThingInterface {
         return name;
     }
 
-    public void addGarbage(Garbage g) {
-        garbageList.add(g);
+    @Override
+    public void addGarbage(Garbage garbage) {
+        garbageList.add(garbage);
     }
 
     public void liftGarbage(Wind wind) {

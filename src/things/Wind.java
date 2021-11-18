@@ -1,17 +1,17 @@
 package things;
 
+import utilities.GarbageAdditionInterface;
 import utilities.ThingInterface;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Objects;
 
-public class Wind implements ThingInterface {
+public class Wind implements ThingInterface, GarbageAdditionInterface {
     public static final String name = "Ветер";
     private final LinkedList<Garbage> garbageList = new LinkedList<>();
 
-    public void addGarbage(Garbage... garbage) {
-        garbageList.addAll(Arrays.asList(garbage));
+    public void addGarbage(Garbage garbage) {
+        garbageList.add(garbage);
     }
 
     public void blowDust(Floor floor, StoryCharacter ch) {
