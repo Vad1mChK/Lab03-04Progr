@@ -9,7 +9,6 @@ public class Story {
         StoryCharacter Lillebror = new StoryCharacter("Малыш");
         VacuumCleaner vacuumCleaner = new VacuumCleaner(new Dust(), new Stamp());
         Floor floor = new Floor();
-        Wind wind = new Wind();
         vacuumCleaner.placeOn(floor);
         // Карлсон навалился животом на пылесос и вцепился в его ручку.
         Karlsson.interactWith(vacuumCleaner, Action.FALL, Action.GRAB);
@@ -20,6 +19,7 @@ public class Story {
         // Получилась большая куча серо-черной пыли.
         // Больше он уже не смог ничего добавить,
         // потому что в открытое окно ворвался ветер,
+        Wind wind = new Wind();
         wind.blow(floor, Karlsson, Lillebror);
         // взметнул пыль,
         // она забилась Карлсону в нос,
