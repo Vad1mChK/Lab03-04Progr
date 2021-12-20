@@ -2,11 +2,20 @@ package run;
 
 import things.*;
 import utilities.Action;
+import utilities.ScaredException;
+
+import java.util.Arrays;
 
 public class Story {
     public static void main(String[] args) {
+        Story mainStory = new Story();
+        mainStory.playStory();
+    }
+
+    public void playStory() {
         StoryCharacter Karlsson = new StoryCharacter("Карлсон");
         StoryCharacter Lillebror = new StoryCharacter("Малыш");
+        Room room = new Room("Комната Малыша", Karlsson, Lillebror);
         VacuumCleaner vacuumCleaner = new VacuumCleaner(new Dust(), new Stamp());
         Floor floor = new Floor();
         vacuumCleaner.placeOn(floor);
@@ -31,5 +40,49 @@ public class Story {
         // он был совершенно счастлив.
         // Вдруг Карлсон еще раз чихнул,
         // и с пола снова поднялось целое облако пыли.
+        // Но Малыш его не слушал.
+        // Он хотел только одного — как можно скорее наклеить Красную Шапочку в альбом.
+        // А Карлсон стоял в облаке пыли и чихал.
+        // Он всё чихал и чихал до тех пор, пока не «расчихал» пыль по всей комнате.
+        // Но Малыш не мог оторваться от своей марки.
+        // Он её уже наклеил и сейчас любовался ею — до чего хороша!
+        // Малыш отложил альбом.
+        System.out.println("...");
+        Lillebror.remember(new Story() {
+            public void playStory() {
+                Room pastRoom = new Room(room);
+                Roof roof = new Roof("Крыша Карлсона");
+                pastRoom.transfer(roof, pastRoom.getLocationPeople());
+                // Полететь с Карлсоном на крышу — об этом можно было только мечтать!
+                // Лишь однажды довелось ему побывать у Карлсона, в его маленьком домике на крыше.
+
+                class ScareableStoryCharacter extends StoryCharacter {
+                    public ScareableStoryCharacter(String name) {
+                        super(name);
+                    }
+
+                    public void check(Location desiredLocation, Location undesiredLocation, StoryCharacter character) {
+                        System.out.println(getName()+" проверяет, есть ли персонаж \""+character.getName()+"\" в локации \""+desiredLocation.getName()+"\".");
+                        try {
+                            if (!desiredLocation.searchForCharacter(character)) throw new ScaredException();
+                        } catch (ScaredException e) {
+                            scare();
+                            if (undesiredLocation.searchForCharacter(character) && undesiredLocation instanceof Roof) call911();
+                        }
+                    }
+
+                    private void scare() {
+                        System.out.println(getName() + " пугается.");
+                    }
+
+                    private void call911() {
+                        System.out.println(getName() + " вызывает пожарных.");
+                    }
+                }
+                ScareableStoryCharacter Mother = new ScareableStoryCharacter("Мама");
+                Mother.check(pastRoom, roof, Lillebror);
+            }
+            // Но в тот раз мама почему-то ужасно испугалась и вызвала пожарников.
+        });
     }
 }

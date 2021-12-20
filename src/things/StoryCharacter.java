@@ -1,5 +1,6 @@
 package things;
 
+import run.Story;
 import utilities.Action;
 import utilities.StoryCharacterInterface;
 
@@ -83,6 +84,11 @@ public class StoryCharacter implements StoryCharacterInterface {
         setHeld(object);
         System.out.println(name + " берёт в руки объект \"" + held + "\".");
         this.setHappy();
+    }
+
+    public void remember(Story story) {
+        System.out.println(name + " вспоминает:");
+        story.playStory();
     }
 
     @Override
