@@ -2,11 +2,14 @@ package things;
 
 import run.Story;
 import utilities.Action;
-import utilities.StoryCharacterInterface;
+import utilities.StoryCharacterBaseInterface;
+import utilities.StoryCharacterHeldInterface;
 
-public class StoryCharacter implements StoryCharacterInterface {
+import java.util.LinkedList;
+
+public class StoryCharacter implements StoryCharacterBaseInterface, StoryCharacterHeldInterface {
     private final String name;
-    private Object held;
+    private LinkedList<Object> held;
     private boolean isHappy;
 
     public StoryCharacter(String name) {
@@ -23,12 +26,28 @@ public class StoryCharacter implements StoryCharacterInterface {
         return isHappy;
     }
 
-    public Object getHeld() {
+    public LinkedList<Object> getHeld() {
         return held;
     }
 
-    public void setHeld(Object held) {
-        this.held = held;
+    public void addHeld(Object obj) {
+        held.add(obj);
+    }
+
+    public void hold(Object obj) {
+        if (held == null) held = new LinkedList<Object>();
+        addHeld(obj);
+        System.out.println(name + " берёт в руки объект \"" + obj + "\".");
+        if (!getHappy()) setHappy();
+    }
+
+    public void removeHeld(Object obj) {
+        held.remove(obj);
+    }
+
+    public void release(Object obj) {
+        held.remove(obj);
+        System.out.println(name + " кладёт объект \"" + obj + "\".");
     }
 
     public void setHappy() {
@@ -75,21 +94,37 @@ public class StoryCharacter implements StoryCharacterInterface {
     public void sneeze(Floor floor) {
         Wind sneezeWind = new Wind();
         System.out.println(name + " чихает.");
-        for (Dust dust : floor.getDusts()) {
-            dust.soar(sneezeWind);
+        if (!floor.getDusts().isEmpty()){
+            for (Dust dust : floor.getDusts()) {
+                dust.soar(sneezeWind);
+                floor.getRoom().addDust(dust);
+            }
         }
     }
 
-    public void hold(Object object) {
-        setHeld(object);
-        System.out.println(name + " берёт в руки объект \"" + held + "\".");
-        this.setHappy();
+
+    public void putIntoAlbum(Stamp stamp, Album album) {
+        hold(album);
+        try {
+            album.addStamp(stamp);
+            System.out.println(name + " вклеивает марку \"" + stamp.getName() + "\" в альбом \"" + album.getName() + "\".");
+            removeHeld(stamp);
+        } catch (Album.AlbumFullException e) {
+            System.out.println(name + " не может вклеить марку \"" + stamp.getName() + "\" в альбом \"" + album.getName() + "\": альбом полон.");
+        }
+        admire(stamp, album);
+        release(album);
+    }
+
+    private void admire(Stamp stamp, Album album) {
+        System.out.println(name+ " любуется маркой \""+ stamp.getName() + "\" в альбоме \""+ album.getName()+"\".");
     }
 
     public void remember(Story story) {
         System.out.println(name + " вспоминает:");
         story.playStory();
     }
+
 
     @Override
     public boolean equals(Object obj) {

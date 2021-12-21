@@ -9,9 +9,17 @@ import java.util.Objects;
 public class Floor implements ThingInterface, GarbageAdditionInterface {
     public static final String name = "Пол";
     private final LinkedList<Garbage> garbageList = new LinkedList<>();
+    private Room room;
 
+    public Floor(Room room){
+        this.room = room;
+    }
     public String getName() {
         return name;
+    }
+
+    public Room getRoom() {
+        return this.room;
     }
 
     @Override

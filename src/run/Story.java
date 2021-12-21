@@ -2,9 +2,8 @@ package run;
 
 import things.*;
 import utilities.Action;
+import utilities.ScareableStoryCharacterInterface;
 import utilities.ScaredException;
-
-import java.util.Arrays;
 
 public class Story {
     public static void main(String[] args) {
@@ -15,9 +14,11 @@ public class Story {
     public void playStory() {
         StoryCharacter Karlsson = new StoryCharacter("Карлсон");
         StoryCharacter Lillebror = new StoryCharacter("Малыш");
+
         Room room = new Room("Комната Малыша", Karlsson, Lillebror);
-        VacuumCleaner vacuumCleaner = new VacuumCleaner(new Dust(), new Stamp());
-        Floor floor = new Floor();
+        Stamp stamp = new Stamp("Марка с изображением Красной Шапочки");
+        VacuumCleaner vacuumCleaner = new VacuumCleaner(new Dust(), stamp);
+        Floor floor = new Floor(room);
         vacuumCleaner.placeOn(floor);
         // Карлсон навалился животом на пылесос и вцепился в его ручку.
         Karlsson.interactWith(vacuumCleaner, Action.FALL, Action.GRAB);
@@ -41,13 +42,14 @@ public class Story {
         // Вдруг Карлсон еще раз чихнул,
         // и с пола снова поднялось целое облако пыли.
         // Но Малыш его не слушал.
+        Album album = new Album("Альбом Малыша с марками");
+        Lillebror.putIntoAlbum(stamp, album);
         // Он хотел только одного — как можно скорее наклеить Красную Шапочку в альбом.
         // А Карлсон стоял в облаке пыли и чихал.
         // Он всё чихал и чихал до тех пор, пока не «расчихал» пыль по всей комнате.
         // Но Малыш не мог оторваться от своей марки.
         // Он её уже наклеил и сейчас любовался ею — до чего хороша!
         // Малыш отложил альбом.
-        System.out.println("...");
         Lillebror.remember(new Story() {
             public void playStory() {
                 Room pastRoom = new Room(room);
@@ -55,28 +57,9 @@ public class Story {
                 pastRoom.transfer(roof, pastRoom.getLocationPeople());
                 // Полететь с Карлсоном на крышу — об этом можно было только мечтать!
                 // Лишь однажды довелось ему побывать у Карлсона, в его маленьком домике на крыше.
-
-                class ScareableStoryCharacter extends StoryCharacter {
+                class ScareableStoryCharacter extends StoryCharacter implements ScareableStoryCharacterInterface {
                     public ScareableStoryCharacter(String name) {
                         super(name);
-                    }
-
-                    public void check(Location desiredLocation, Location undesiredLocation, StoryCharacter character) {
-                        System.out.println(getName()+" проверяет, есть ли персонаж \""+character.getName()+"\" в локации \""+desiredLocation.getName()+"\".");
-                        try {
-                            if (!desiredLocation.searchForCharacter(character)) throw new ScaredException();
-                        } catch (ScaredException e) {
-                            scare();
-                            if (undesiredLocation.searchForCharacter(character) && undesiredLocation instanceof Roof) call911();
-                        }
-                    }
-
-                    private void scare() {
-                        System.out.println(getName() + " пугается.");
-                    }
-
-                    private void call911() {
-                        System.out.println(getName() + " вызывает пожарных.");
                     }
                 }
                 ScareableStoryCharacter Mother = new ScareableStoryCharacter("Мама");

@@ -1,17 +1,21 @@
 package things;
 
 public class Stamp extends Garbage {
-    private static final String name = "Марка";
+    private String name = "Марка";
+
+    public Stamp(String name) {
+        this.name = name;
+    }
 
     @Override
     public String getName() {
         return name;
     }
 
-    public void fallBefore(Floor floor, StoryCharacter ch, Wind wind) {
-        hoverOverFloor();
-        System.out.println(name + " падает к ногам персонажа \"" + ch.getName() + "\".");
-        ch.hold(this);
+    public void fallBefore(Floor floor, StoryCharacter character, Wind wind) {
+        hoverOverFloor(floor);
+        System.out.println(name + " падает к ногам персонажа \"" + character.getName() + "\".");
+        character.hold(this);
     }
 
     @Override
