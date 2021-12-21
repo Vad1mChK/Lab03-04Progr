@@ -27,15 +27,6 @@ public class Room extends Location {
         setDusted(true);
     }
 
-    public LinkedList<Dust> getDustList() {
-        return dustList;
-    }
-
-    public void setDustList() {
-        this.dustList = dustList;
-        setDusted(!dustList.isEmpty());
-    }
-
     public boolean getDusted() {
         return isDusted;
     }
