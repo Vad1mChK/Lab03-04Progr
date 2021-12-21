@@ -22,16 +22,16 @@ public class Room extends Location {
         setDusted(sameRoom.getDusted());
     }
 
-    public void addDust(Dust dust){
+    public void addDust(Dust dust) {
         dustList.add(dust);
         setDusted(true);
     }
 
-    public LinkedList<Dust> getDustList(){
+    public LinkedList<Dust> getDustList() {
         return dustList;
     }
 
-    public void setDustList(){
+    public void setDustList() {
         this.dustList = dustList;
         setDusted(!dustList.isEmpty());
     }

@@ -94,7 +94,7 @@ public class StoryCharacter implements StoryCharacterBaseInterface, StoryCharact
     public void sneeze(Floor floor) {
         Wind sneezeWind = new Wind();
         System.out.println(name + " чихает.");
-        if (!floor.getDusts().isEmpty()){
+        if (!floor.getDusts().isEmpty()) {
             for (Dust dust : floor.getDusts()) {
                 dust.soar(sneezeWind);
                 floor.getRoom().addDust(dust);
@@ -117,7 +117,7 @@ public class StoryCharacter implements StoryCharacterBaseInterface, StoryCharact
     }
 
     private void admire(Stamp stamp, Album album) {
-        System.out.println(name+ " любуется маркой \""+ stamp.getName() + "\" в альбоме \""+ album.getName()+"\".");
+        System.out.println(name + " любуется маркой \"" + stamp.getName() + "\" в альбоме \"" + album.getName() + "\".");
     }
 
     public void remember(Story story) {

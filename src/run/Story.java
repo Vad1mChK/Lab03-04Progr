@@ -3,7 +3,6 @@ package run;
 import things.*;
 import utilities.Action;
 import utilities.ScareableStoryCharacterInterface;
-import utilities.ScaredException;
 
 public class Story {
     public static void main(String[] args) {

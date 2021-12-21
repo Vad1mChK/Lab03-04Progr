@@ -35,8 +35,10 @@ public abstract class Location implements ThingInterface {
     }
 
     public boolean searchForCharacterWithMessage(StoryCharacter character) {
-        if (searchForCharacter(character)) System.out.println("Персонаж \""+character.getName()+"\" обнаружен в локации \""+getName()+"\".");
-        else System.out.println("Персонаж \""+character.getName()+"\" не обнаружен в локации \""+getName()+"\".");
+        if (searchForCharacter(character))
+            System.out.println("Персонаж \"" + character.getName() + "\" обнаружен в локации \"" + getName() + "\".");
+        else
+            System.out.println("Персонаж \"" + character.getName() + "\" не обнаружен в локации \"" + getName() + "\".");
         return searchForCharacter(character);
     }
 
