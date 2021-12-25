@@ -19,7 +19,13 @@ public class Room extends Location {
     public Room(Room sameRoom) {
         setName(sameRoom.getName());
         setLocationPeople(sameRoom.getLocationPeople());
-        setDusted(sameRoom.getDusted());
+        for (Dust dust: sameRoom.getDustList()){
+            addDust(dust);
+        }
+    }
+
+    public LinkedList<Dust> getDustList() {
+        return dustList;
     }
 
     public void addDust(Dust dust) {
