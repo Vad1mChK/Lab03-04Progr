@@ -7,14 +7,14 @@ public enum Action {
 
     @Override
     public String toString() {
-        switch (ordinal()) {
-            case 0: {
+        switch (this) {
+            case FALL: {
                 return "Падение";
             }
-            case 1: {
+            case GRAB: {
                 return "Нажатие на ручку";
             }
-            case 2: {
+            case OPEN: {
                 return "Открытие";
             }
             default: {
