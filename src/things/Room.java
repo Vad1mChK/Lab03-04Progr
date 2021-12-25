@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Room extends Location {
     private boolean isDusted;
-    private LinkedList<Dust> dustList = new LinkedList<>();
+    private final LinkedList<Dust> dustList = new LinkedList<>();
 
     {
         isDusted = false;
@@ -51,6 +51,6 @@ public class Room extends Location {
 
     @Override
     public String toString() {
-        return "Комната";
+        return "Комната "+getName();
     }
 }

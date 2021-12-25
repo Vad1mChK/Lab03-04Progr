@@ -95,6 +95,6 @@ public abstract class Location implements ThingInterface {
 
     @Override
     public String toString() {
-        return "Локация";
+        return "Локация "+name;
     }
 }

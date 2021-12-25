@@ -20,6 +20,6 @@ public class Roof extends Location {
 
     @Override
     public String toString() {
-        return "Крыша";
+        return "Крыша "+getName();
     }
 }
