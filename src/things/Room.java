@@ -1,7 +1,7 @@
 package things;
 
+import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Room extends Location {
     private boolean isDusted;
@@ -13,7 +13,7 @@ public class Room extends Location {
 
     public Room(String name, StoryCharacter... locationPeople) {
         setName(name);
-        setLocationPeople(new LinkedList<StoryCharacter>(List.of(locationPeople)));
+        setLocationPeople(new LinkedList<StoryCharacter>(Arrays.asList(locationPeople)));
     }
 
     public Room(Room sameRoom) {

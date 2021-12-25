@@ -16,11 +16,11 @@ public interface ScareableStoryCharacterInterface extends StoryCharacterBaseInte
         }
     }
 
-    private void scare() {
+    default void scare() {
         System.out.println(getName() + " пугается.");
     }
 
-    private void call911() {
+    default void call911() {
         System.out.println(getName() + " вызывает пожарников.");
     }
 }
